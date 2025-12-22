@@ -35,7 +35,7 @@ export function Footer() {
               {/* Links */}
               <nav className="flex gap-6">
                 <Link
-                  href="https://logz.co.jp/privacypolicy"
+                  href={process.env.NEXT_PUBLIC_PRIVACY_POLICY_URL || "https://logz.co.jp/privacypolicy"}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-base font-semibold text-foreground transition-colors hover:text-primary"

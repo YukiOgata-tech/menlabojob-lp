@@ -1,8 +1,16 @@
 "use client";
 
+import { useState } from "react";
 import { useRegistrationStore } from "@/lib/store/registrationStore";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+  isValidEmail,
+  isValidPhoneNumber,
+  getEmailErrorMessage,
+  getPhoneErrorMessage,
+  getAgeErrorMessage,
+} from "@/lib/utils/validation";
 
 const prefectures = [
   "北海道",
@@ -56,6 +64,34 @@ const prefectures = [
 
 export function Step3PersonalInfo() {
   const { data, setData } = useRegistrationStore();
+  const [touched, setTouched] = useState({
+    age: false,
+    phoneNumber: false,
+    email: false,
+  });
+
+  const ageError =
+    touched.age && data.age ? getAgeErrorMessage(data.age) : null;
+
+  const phoneError =
+    touched.phoneNumber && data.phoneNumber
+      ? getPhoneErrorMessage(data.phoneNumber)
+      : null;
+
+  const emailError =
+    touched.email && data.email ? getEmailErrorMessage(data.email) : null;
+
+  const handleAgeBlur = () => {
+    setTouched((prev) => ({ ...prev, age: true }));
+  };
+
+  const handlePhoneBlur = () => {
+    setTouched((prev) => ({ ...prev, phoneNumber: true }));
+  };
+
+  const handleEmailBlur = () => {
+    setTouched((prev) => ({ ...prev, email: true }));
+  };
 
   return (
     <div className="space-y-4 sm:space-y-6">
@@ -107,33 +143,69 @@ export function Step3PersonalInfo() {
             placeholder="30"
             value={data.age || ""}
             onChange={(e) => setData({ age: e.target.value })}
-            className="h-10 rounded-lg sm:h-12 sm:rounded-xl"
+            onBlur={handleAgeBlur}
+            min="18"
+            className={`h-10 rounded-lg sm:h-12 sm:rounded-xl ${
+              ageError ? "border-red-500" : ""
+            }`}
           />
+          {ageError && (
+            <p className="text-xs text-red-500 sm:text-sm">{ageError}</p>
+          )}
         </div>
 
         {/* Phone Number */}
         <div className="space-y-1 sm:space-y-2">
-          <Label htmlFor="phoneNumber" className="text-xs sm:text-sm">電話番号 *</Label>
+          <Label htmlFor="phoneNumber" className="text-xs sm:text-sm">
+            電話番号 *
+          </Label>
           <Input
             id="phoneNumber"
             type="tel"
             placeholder="090-1234-5678"
             value={data.phoneNumber || ""}
             onChange={(e) => setData({ phoneNumber: e.target.value })}
-            className="h-10 rounded-lg sm:h-12 sm:rounded-xl"
+            onBlur={handlePhoneBlur}
+            className={`h-10 rounded-lg sm:h-12 sm:rounded-xl ${
+              phoneError ? "border-red-500" : ""
+            }`}
           />
+          {phoneError && (
+            <p className="text-xs text-red-500 sm:text-sm">{phoneError}</p>
+          )}
         </div>
 
         {/* Email */}
         <div className="space-y-1 sm:space-y-2">
-          <Label htmlFor="email" className="text-xs sm:text-sm">メールアドレス *</Label>
+          <Label htmlFor="email" className="text-xs sm:text-sm">
+            メールアドレス *
+          </Label>
           <Input
             id="email"
             type="email"
             placeholder="example@email.com"
             value={data.email || ""}
             onChange={(e) => setData({ email: e.target.value })}
-            className="h-10 rounded-lg sm:h-12 sm:rounded-xl"
+            onBlur={handleEmailBlur}
+            className={`h-10 rounded-lg sm:h-12 sm:rounded-xl ${
+              emailError ? "border-red-500" : ""
+            }`}
+          />
+          {emailError && (
+            <p className="text-xs text-red-500 sm:text-sm">{emailError}</p>
+          )}
+        </div>
+
+        {/* Honeypot - ボット対策用の隠しフィールド */}
+        <div className="absolute left-[-9999px]" aria-hidden="true">
+          <Label htmlFor="website">ウェブサイト（入力不要）</Label>
+          <Input
+            id="website"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            value={data.website || ""}
+            onChange={(e) => setData({ website: e.target.value })}
           />
         </div>
       </div>

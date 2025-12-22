@@ -18,6 +18,13 @@ import { Step4Agreement } from "./steps/Step4Agreement";
 import { Step5Complete } from "./steps/Step5Complete";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { toast } from "react-hot-toast";
+import { isValidEmail, isValidPhoneNumber } from "@/lib/utils/validation";
+import {
+  checkRateLimit,
+  recordSubmission,
+  validateHoneypot,
+} from "@/lib/utils/spam-protection";
+import { checkDuplicateRegistration } from "@/lib/firebase/registrations";
 
 interface RegistrationFormProps {
   open: boolean;
@@ -52,7 +59,9 @@ export function RegistrationForm({ open, onOpenChange }: RegistrationFormProps) 
           data.fullName &&
           data.age &&
           data.phoneNumber &&
-          data.email
+          isValidPhoneNumber(data.phoneNumber) &&
+          data.email &&
+          isValidEmail(data.email)
         );
       case 4:
         return data.agreeToTerms;
@@ -63,6 +72,17 @@ export function RegistrationForm({ open, onOpenChange }: RegistrationFormProps) 
 
   const handleNext = async () => {
     if (!canProceedToNextStep()) {
+      // ステップ3の場合、より具体的なエラーメッセージを表示
+      if (currentStep === 3) {
+        if (!data.phoneNumber || !isValidPhoneNumber(data.phoneNumber)) {
+          toast.error("正しい電話番号を入力してください");
+          return;
+        }
+        if (!data.email || !isValidEmail(data.email)) {
+          toast.error("正しいメールアドレスを入力してください");
+          return;
+        }
+      }
       toast.error("必須項目を入力してください");
       return;
     }
@@ -71,9 +91,45 @@ export function RegistrationForm({ open, onOpenChange }: RegistrationFormProps) 
       // Submit to Firestore
       setIsSubmitting(true);
       try {
+        // スパム対策チェック
+
+        // 1. ハニーポットチェック
+        if (!validateHoneypot(data.website || "")) {
+          toast.error("不正な送信が検知されました。");
+          setIsSubmitting(false);
+          return;
+        }
+
+        // 2. レート制限チェック
+        const rateLimitResult = checkRateLimit();
+        if (!rateLimitResult.allowed) {
+          toast.error(
+            `送信回数の上限に達しました（7分以内に2件まで）。あと${rateLimitResult.remainingTime}分後に再度お試しください。`
+          );
+          setIsSubmitting(false);
+          return;
+        }
+
+        // 3. 重複登録チェック
+        const isDuplicate = await checkDuplicateRegistration(
+          data.email || "",
+          data.phoneNumber || ""
+        );
+        if (isDuplicate) {
+          toast.error(
+            "同じメールアドレスと電話番号での登録が既に処理中です。しばらくお待ちください。"
+          );
+          setIsSubmitting(false);
+          return;
+        }
+
         // Firebase integration
         const { submitRegistration } = await import("@/lib/firebase/registrations");
         await submitRegistration(data);
+
+        // 送信成功時にタイムスタンプを記録
+        recordSubmission();
+
         toast.success("登録が完了しました！");
 
         // Close modal and redirect to complete page

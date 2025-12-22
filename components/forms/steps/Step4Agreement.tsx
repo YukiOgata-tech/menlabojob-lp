@@ -43,7 +43,7 @@ export function Step4Agreement() {
               </a>
               および
               <a
-                href="https://logz.co.jp/privacypolicy"
+                href={process.env.NEXT_PUBLIC_PRIVACY_POLICY_URL || "https://logz.co.jp/privacypolicy"}
                 className="text-primary underline hover:no-underline"
                 target="_blank"
                 rel="noopener noreferrer"

@@ -9,10 +9,12 @@ import Image from "next/image";
 import { Container } from "@/components/common/Container";
 
 export default function CompletePage() {
+  const phoneNumber = process.env.NEXT_PUBLIC_CONTACT_PHONE || "050-1790-8445";
+
   const handlePhoneClick = () => {
-    const confirmed = window.confirm("050-1790-8445 に電話をかけますか？");
+    const confirmed = window.confirm(`${phoneNumber} に電話をかけますか？`);
     if (confirmed) {
-      window.location.href = "tel:050-1790-8445";
+      window.location.href = `tel:${phoneNumber}`;
     }
   };
 
@@ -47,7 +49,11 @@ export default function CompletePage() {
                 priority
               />
             </Link>
-            <Link href="https://logz.co.jp" target="_blank" rel="noopener noreferrer">
+            <Link
+              href={process.env.NEXT_PUBLIC_COMPANY_URL || "https://logz.co.jp"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Button variant="outline" size="sm" className="gap-2">
                 会社ホームページ
               </Button>
@@ -106,7 +112,7 @@ export default function CompletePage() {
                   className="h-16 w-full gap-2 rounded-full bg-green-500 text-lg hover:bg-green-600"
                 >
                   <Phone className="h-6 w-6" />
-                  050-1790-8445
+                  {phoneNumber}
                 </Button>
                 <p className="text-center font-semibold text-muted-foreground">電話で相談する</p>
               </motion.div>
@@ -119,7 +125,11 @@ export default function CompletePage() {
                 className="space-y-4 rounded-3xl border-2 border-green-400/30 bg-white p-6 shadow-lg"
               >
                 <h3 className="text-center text-xl font-bold">LINE公式アカウント</h3>
-                <Link href="https://lin.ee/Tv0C9Q2" target="_blank" rel="noopener noreferrer">
+                <Link
+                  href={process.env.NEXT_PUBLIC_OFFICIAL_LINE_URL || "https://lin.ee/Tv0C9Q2"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Button
                     size="lg"
                     className="h-16 w-full gap-2 rounded-full bg-[#06C755] text-lg hover:bg-[#05b34b]"
@@ -272,7 +282,7 @@ export default function CompletePage() {
               <div className="flex flex-col items-start gap-4">
                 <nav className="flex gap-6">
                   <Link
-                    href="https://logz.co.jp/privacypolicy"
+                    href={process.env.NEXT_PUBLIC_PRIVACY_POLICY_URL || "https://logz.co.jp/privacypolicy"}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-base font-semibold text-foreground transition-colors hover:text-primary"

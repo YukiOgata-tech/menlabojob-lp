@@ -17,6 +17,9 @@ export interface RegistrationData {
   // Step 4
   agreeToTerms: boolean;
   applyForAgent: boolean;
+
+  // Spam protection (honeypot)
+  website?: string; // ボット検知用の隠しフィールド
 }
 
 interface RegistrationStore {

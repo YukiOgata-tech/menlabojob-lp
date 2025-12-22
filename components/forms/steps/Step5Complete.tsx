@@ -6,10 +6,12 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export function Step5Complete() {
+  const phoneNumber = process.env.NEXT_PUBLIC_CONTACT_PHONE || "050-1790-8445";
+
   const handlePhoneClick = () => {
-    const confirmed = window.confirm("050-1790-8445 に電話をかけますか？");
+    const confirmed = window.confirm(`${phoneNumber} に電話をかけますか？`);
     if (confirmed) {
-      window.location.href = "tel:050-1790-8445";
+      window.location.href = `tel:${phoneNumber}`;
     }
   };
 
@@ -92,7 +94,7 @@ export function Step5Complete() {
           className="h-14 w-full gap-2 rounded-full bg-green-500 text-lg hover:bg-green-600"
         >
           <Phone className="h-5 w-5" />
-          050-1790-8445
+          {phoneNumber}
         </Button>
         <p className="text-center text-sm text-muted-foreground">電話で相談する</p>
       </motion.div>
@@ -105,7 +107,11 @@ export function Step5Complete() {
         className="space-y-4 rounded-2xl border-2 border-green-400/30 bg-white p-6"
       >
         <h4 className="text-center text-lg font-bold">LINE公式アカウント</h4>
-        <Link href="https://lin.ee/Tv0C9Q2" target="_blank" rel="noopener noreferrer">
+        <Link
+          href={process.env.NEXT_PUBLIC_OFFICIAL_LINE_URL || "https://lin.ee/Tv0C9Q2"}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <Button
             size="lg"
             className="h-14 w-full gap-2 rounded-full bg-[#06C755] text-lg hover:bg-[#05b34b]"
