@@ -1,0 +1,217 @@
+[debug] [2025-12-19T19:54:40.145Z] ----------------------------------------------------------------------
+[debug] [2025-12-19T19:54:40.151Z] Command:       C:\nvm4w\nodejs\node.exe C:\nvm4w\nodejs\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2025-12-19T19:54:40.151Z] CLI Version:   15.1.0
+[debug] [2025-12-19T19:54:40.152Z] Platform:      win32
+[debug] [2025-12-19T19:54:40.152Z] Node Version:  v20.19.2
+[debug] [2025-12-19T19:54:40.152Z] Time:          Sat Dec 20 2025 04:54:40 GMT+0900 (日本標準時)
+[debug] [2025-12-19T19:54:40.153Z] ----------------------------------------------------------------------
+[debug] 
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\projects\menlabojob-lp
+
+Before we get started, keep in mind:
+
+  * You are currently outside your home directory
+
+[info] 
+=== Account Setup
+[info] 
+[info] Which account do you want to use for this project? Choose an account or add a new one now
+[info] 
+[debug] [2025-12-19T19:56:35.010Z] setProjectAccount(C:\projects\menlabojob-lp, mentalhealthlabo.tech@gmail.com)
+[info] 
+[info] +  Using account: mentalhealthlabo.tech@gmail.com 
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] 
+[debug] [2025-12-19T19:56:40.278Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-12-19T19:56:40.279Z] > authorizing via signed-in user (mentalhealthlabo.tech@gmail.com)
+[debug] [2025-12-19T19:56:40.281Z] No OAuth tokens found
+[debug] [2025-12-19T19:56:40.282Z] No OAuth tokens found
+[debug] [2025-12-19T19:56:40.282Z] > refreshing access token with scopes: []
+[debug] [2025-12-19T19:56:40.289Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2025-12-19T19:56:40.289Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-12-19T19:56:40.556Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2025-12-19T19:56:40.556Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2025-12-19T19:56:40.572Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2025-12-19T19:56:41.257Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2025-12-19T19:56:41.257Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] 
+=== Firestore Setup
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2025-12-19T19:56:43.382Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T19:56:43.382Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T19:56:43.382Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/menlabojob/services/firestore.googleapis.com [none]
+[debug] [2025-12-19T19:56:43.382Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/menlabojob/services/firestore.googleapis.com x-goog-quota-user=projects/menlabojob
+[debug] [2025-12-19T19:56:44.615Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/menlabojob/services/firestore.googleapis.com 200
+[debug] [2025-12-19T19:56:44.616Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/menlabojob/services/firestore.googleapis.com [omitted]
+[info] +  firestore: required API firestore.googleapis.com is enabled 
+[debug] [2025-12-19T19:56:44.630Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T19:56:44.631Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T19:56:44.631Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/menlabojob/databases [none]
+[debug] [2025-12-19T19:56:45.300Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/menlabojob/databases 200
+[debug] [2025-12-19T19:56:45.300Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/menlabojob/databases {"databases":[{"name":"projects/menlabojob/databases/(default)","uid":"dbf66017-c27d-43f0-a7f6-16d5c6ced8a5","createTime":"2025-12-19T19:29:14.974821Z","updateTime":"2025-12-19T19:29:14.974821Z","locationId":"asia-northeast1","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2025-12-19T19:29:14.974821Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"b","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IN7xwdC3ypEDMOWsgb6xypED"}]}
+[info] 
+[info] Firestore Security Rules allow you to define how and when to allow
+[info] requests. You can keep these rules in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2025-12-19T19:56:51.542Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T19:56:51.543Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T19:56:51.543Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/menlabojob/releases pageSize=10&pageToken=
+[debug] [2025-12-19T19:56:52.793Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/menlabojob/releases 200
+[debug] [2025-12-19T19:56:52.793Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/menlabojob/releases {"releases":[{"name":"projects/menlabojob/releases/cloud.firestore","rulesetName":"projects/menlabojob/rulesets/f7af6278-2ff9-4561-aeb2-7b3b66c9e9fe","createTime":"2025-12-19T19:29:23.274235Z","updateTime":"2025-12-19T19:29:23.274235Z"}]}
+[debug] [2025-12-19T19:56:52.793Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T19:56:52.794Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T19:56:52.794Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/menlabojob/rulesets/f7af6278-2ff9-4561-aeb2-7b3b66c9e9fe [none]
+[debug] [2025-12-19T19:56:53.918Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/menlabojob/rulesets/f7af6278-2ff9-4561-aeb2-7b3b66c9e9fe 200
+[debug] [2025-12-19T19:56:53.918Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/menlabojob/rulesets/f7af6278-2ff9-4561-aeb2-7b3b66c9e9fe [omitted]
+[info] i  Downloaded the existing Firestore Security Rules from the Firebase console 
+[info] 
+[info] Firestore indexes allow you to perform complex queries while
+[info] maintaining performance that scales with the size of the result
+[info] set. You can keep index definitions in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2025-12-19T19:56:55.860Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T19:56:55.860Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T19:56:55.860Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T19:56:55.861Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T19:56:55.861Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/menlabojob/databases/(default)/collectionGroups/-/indexes [none]
+[debug] [2025-12-19T19:56:55.865Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/menlabojob/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* [none]
+[debug] [2025-12-19T19:56:56.134Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/menlabojob/databases/(default)/collectionGroups/-/indexes 200
+[debug] [2025-12-19T19:56:56.134Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/menlabojob/databases/(default)/collectionGroups/-/indexes {}
+[debug] [2025-12-19T19:56:56.360Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/menlabojob/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* 200
+[debug] [2025-12-19T19:56:56.361Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/menlabojob/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* {"fields":[{"name":"projects/menlabojob/databases/(default)/collectionGroups/__default__/fields/*","indexConfig":{"indexes":[{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"ASCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"DESCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","arrayConfig":"CONTAINS"}],"state":"READY"}]}}]}
+[info] i  Downloaded the existing Firestore indexes from the Firebase console 
+[info] +  Wrote firestore.rules 
+[info] +  Wrote firestore.indexes.json 
+[info] 
+=== Functions Setup
+[debug] [2025-12-19T19:56:56.390Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-12-19T19:56:56.391Z] > authorizing via signed-in user (mentalhealthlabo.tech@gmail.com)
+[debug] [2025-12-19T19:56:56.391Z] [iam] checking project menlabojob for permissions ["firebase.projects.get"]
+[debug] [2025-12-19T19:56:56.392Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T19:56:56.392Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T19:56:56.392Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/menlabojob:testIamPermissions [none]
+[debug] [2025-12-19T19:56:56.392Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/menlabojob:testIamPermissions x-goog-quota-user=projects/menlabojob
+[debug] [2025-12-19T19:56:56.393Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/menlabojob:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-12-19T19:56:57.205Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/menlabojob:testIamPermissions 200
+[debug] [2025-12-19T19:56:57.206Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/menlabojob:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-12-19T19:56:57.207Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T19:56:57.207Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T19:56:57.208Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T19:56:57.208Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T19:56:57.209Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/menlabojob/services/cloudfunctions.googleapis.com [none]
+[debug] [2025-12-19T19:56:57.209Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/menlabojob/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/menlabojob
+[debug] [2025-12-19T19:56:57.213Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/menlabojob/services/runtimeconfig.googleapis.com [none]
+[debug] [2025-12-19T19:56:57.213Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/menlabojob/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/menlabojob
+[debug] [2025-12-19T19:56:58.243Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/menlabojob/services/cloudfunctions.googleapis.com 200
+[debug] [2025-12-19T19:56:58.244Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/menlabojob/services/cloudfunctions.googleapis.com [omitted]
+[debug] [2025-12-19T19:56:58.244Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T19:56:58.244Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T19:56:58.245Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1/projects/menlabojob/services/cloudfunctions.googleapis.com:enable [none]
+[debug] [2025-12-19T19:56:58.245Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1/projects/menlabojob/services/cloudfunctions.googleapis.com:enable x-goog-quota-user=projects/menlabojob
+[debug] [2025-12-19T19:56:58.249Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/menlabojob/services/runtimeconfig.googleapis.com 200
+[debug] [2025-12-19T19:56:58.249Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/menlabojob/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2025-12-19T19:56:59.313Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1/projects/menlabojob/services/cloudfunctions.googleapis.com:enable 200
+[debug] [2025-12-19T19:56:59.314Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1/projects/menlabojob/services/cloudfunctions.googleapis.com:enable [omitted]
+[info] Let's create a new codebase for your functions.
+[info] A directory corresponding to the codebase will be created in your project
+[info] with sample code pre-configured.
+
+[info] See https://firebase.google.com/docs/functions/organize-functions for
+[info] more information on organizing your functions using codebases.
+
+[info] Functions can be deployed with firebase deploy.
+
+[info] +  Wrote functions/package.json 
+[info] +  Wrote functions/.eslintrc.js 
+[info] +  Wrote functions/tsconfig.dev.json 
+[info] +  Wrote functions/tsconfig.json 
+[info] +  Wrote functions/src/index.ts 
+[info] +  Wrote functions/.gitignore 
+[info] 
+=== Hosting Setup
+[debug] [2025-12-19T19:59:12.315Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T19:59:12.316Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T19:59:12.316Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/menlabojob [none]
+[debug] [2025-12-19T19:59:12.771Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/menlabojob 200
+[debug] [2025-12-19T19:59:12.771Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/menlabojob {"projectId":"menlabojob","projectNumber":"3941548078","displayName":"menlabojob","name":"projects/menlabojob","resources":{"hostingSite":"menlabojob"},"state":"ACTIVE","etag":"1_de2d8cfb-7a2c-4668-bfcf-cbb7fc69cfa5"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2025-12-19T20:00:26.869Z] >>> [apiv2][query] GET https://www.gstatic.com/firebasejs/releases.json [none]
+[debug] [2025-12-19T20:00:27.133Z] <<< [apiv2][status] GET https://www.gstatic.com/firebasejs/releases.json 200
+[debug] [2025-12-19T20:00:27.134Z] <<< [apiv2][body] GET https://www.gstatic.com/firebasejs/releases.json {"current":{"version":"12.7.0","browserURL":"https://www.gstatic.com/firebasejs/12.7.0/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/12.7.0/firebase.tgz"},"live":{"version":"12.7","browserURL":"https://www.gstatic.com/firebasejs/live/12.7/firebase.js","packageURL":"https://www.gstatic.com/firebasejs/live/12.7/firebase.tgz"},"components":{"ai":"https://www.gstatic.com/firebasejs/12.7.0/firebase-ai.js","analytics":"https://www.gstatic.com/firebasejs/12.7.0/firebase-analytics.js","app":"https://www.gstatic.com/firebasejs/12.7.0/firebase-app.js","app-check":"https://www.gstatic.com/firebasejs/12.7.0/firebase-app-check.js","auth":"https://www.gstatic.com/firebasejs/12.7.0/firebase-auth.js","auth/cordova":"https://www.gstatic.com/firebasejs/12.7.0/firebase-auth/cordova.js","auth/web-extension":"https://www.gstatic.com/firebasejs/12.7.0/firebase-auth/web-extension.js","functions":"https://www.gstatic.com/firebasejs/12.7.0/firebase-functions.js","firestore":"https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.js","firestore/lite":"https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore/lite.js","installations":"https://www.gstatic.com/firebasejs/12.7.0/firebase-installations.js","storage":"https://www.gstatic.com/firebasejs/12.7.0/firebase-storage.js","performance":"https://www.gstatic.com/firebasejs/12.7.0/firebase-performance.js","remote-config":"https://www.gstatic.com/firebasejs/12.7.0/firebase-remote-config.js","messaging":"https://www.gstatic.com/firebasejs/12.7.0/firebase-messaging.js","messaging/sw":"https://www.gstatic.com/firebasejs/12.7.0/firebase-messaging/sw.js","database":"https://www.gstatic.com/firebasejs/12.7.0/firebase-database.js","data-connect":"https://www.gstatic.com/firebasejs/12.7.0/firebase-data-connect.js","firestore.memory":"https://www.gstatic.com/firebasejs/12.7.0/firebase-firestore.memory.js"}}
+[info] +  Wrote public/index.html 
+[info] 
+=== Storage Setup
+[info] 
+[info] Firebase Storage Security Rules allow you to define how and when to allow
+[info] uploads and downloads. You can keep these rules in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[info] +  Wrote storage.rules 
+[info] 
+=== Remoteconfig Setup
+[info] +  Wrote remoteconfig.template.json 
+[info] 
+=== Ailogic Setup
+[debug] [2025-12-19T20:00:32.361Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T20:00:32.361Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T20:00:32.362Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/menlabojob:searchApps pageSize=100
+[debug] [2025-12-19T20:00:32.945Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/menlabojob:searchApps 200
+[debug] [2025-12-19T20:00:32.945Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/menlabojob:searchApps {"apps":[{"name":"projects/menlabojob/webApps/1:3941548078:web:367a15e3b781b971c51fbf","displayName":"menlabojob-LP01","platform":"WEB","appId":"1:3941548078:web:367a15e3b781b971c51fbf","namespace":"YjIwODYwOGEtNDUxYy00ZTJjLWE4ZTAtZTM5YzE1YTU3YmJk","apiKeyId":"0c91c09a-aaaf-4035-8512-efa4a2d56fd1","state":"ACTIVE","expireTime":"1970-01-01T00:00:00Z"}]}
+[debug] [2025-12-19T20:00:38.087Z] [provision] Starting Firebase app provisioning...
+[debug] [2025-12-19T20:00:38.087Z] [provision] Request: {
+  "appNamespace": "1:3941548078:web:367a15e3b781b971c51fbf",
+  "displayName": "menlabojob-LP01",
+  "parent": "projects/menlabojob",
+  "firebaseAiLogicInput": {},
+  "webInput": {}
+}
+[debug] [2025-12-19T20:00:38.087Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T20:00:38.087Z] Checked if tokens are valid: true, expires at: 1766177799556
+[debug] [2025-12-19T20:00:38.088Z] >>> [apiv2][query] POST https://firebase.googleapis.com/v1alpha/firebase:provisionFirebaseApp [none]
+[debug] [2025-12-19T20:00:38.088Z] >>> [apiv2][body] POST https://firebase.googleapis.com/v1alpha/firebase:provisionFirebaseApp {"appNamespace":"1:3941548078:web:367a15e3b781b971c51fbf","displayName":"menlabojob-LP01","parent":"projects/menlabojob","firebaseAiLogicInput":{},"webInput":{}}
+[debug] [2025-12-19T20:00:38.786Z] <<< [apiv2][status] POST https://firebase.googleapis.com/v1alpha/firebase:provisionFirebaseApp 403
+[debug] [2025-12-19T20:00:38.786Z] <<< [apiv2][body] POST https://firebase.googleapis.com/v1alpha/firebase:provisionFirebaseApp {"error":{"code":403,"message":"The user has not accepted the terms of service.","status":"PERMISSION_DENIED","details":[{"@type":"type.googleapis.com/google.rpc.ErrorInfo","reason":"TOS_REQUIRED: The following ToS's must be accepted: [generative-language-api].","domain":"firebase.googleapis.com"},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Link to accept Generative Language terms of service","url":"https://console.cloud.google.com/terms/generative-language-api"}]}]}}
+[debug] [2025-12-19T20:00:38.991Z] FirebaseError: Failed to provision Firebase app: Request to https://firebase.googleapis.com/v1alpha/firebase:provisionFirebaseApp had HTTP Error: 403, The user has not accepted the terms of service.
+
+Error details:
+  Reason: TOS_REQUIRED: The following ToS's must be accepted: [generative-language-api].
+  Domain: firebase.googleapis.com
+
+For help resolving this issue:
+  - Link to accept Generative Language terms of service
+    https://console.cloud.google.com/terms/generative-language-api
+    at enhanceProvisioningError (C:\Users\81801\AppData\Local\nvm\v20.19.2\node_modules\firebase-tools\lib\management\provisioning\errorHandler.js:49:12)
+    at provisionFirebaseApp (C:\Users\81801\AppData\Local\nvm\v20.19.2\node_modules\firebase-tools\lib\management\provisioning\provision.js:104:59)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async Object.actuate (C:\Users\81801\AppData\Local\nvm\v20.19.2\node_modules\firebase-tools\lib\init\features\ailogic\index.js:95:26)
+    at async init (C:\Users\81801\AppData\Local\nvm\v20.19.2\node_modules\firebase-tools\lib\init\index.js:89:17)
+    at async Command.initAction [as actionFn] (C:\Users\81801\AppData\Local\nvm\v20.19.2\node_modules\firebase-tools\lib\commands\init.js:225:5)
+[error] 
+[error] Error: AI Logic setup failed: Failed to provision Firebase app: Request to https://firebase.googleapis.com/v1alpha/firebase:provisionFirebaseApp had HTTP Error: 403, The user has not accepted the terms of service.
+
+Error details:
+  Reason: TOS_REQUIRED: The following ToS's must be accepted: [generative-language-api].
+  Domain: firebase.googleapis.com
+
+For help resolving this issue:
+  - Link to accept Generative Language terms of service
+    https://console.cloud.google.com/terms/generative-language-api
