@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRegistrationStore } from "@/lib/store/registrationStore";
 import {
@@ -25,6 +25,7 @@ import {
   validateHoneypot,
 } from "@/lib/utils/spam-protection";
 import { checkDuplicateRegistration } from "@/lib/firebase/registrations";
+import { trackFormEvent, getSavedUTMParams } from "@/lib/utils/gtm";
 
 interface RegistrationFormProps {
   open: boolean;
@@ -35,6 +36,13 @@ export function RegistrationForm({ open, onOpenChange }: RegistrationFormProps) 
   const { currentStep, data, nextStep, prevStep, reset } = useRegistrationStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // フォーム開始イベントを追跡
+  useEffect(() => {
+    if (open && currentStep === 1) {
+      trackFormEvent("start", 1);
+    }
+  }, [open, currentStep]);
+
   const handleClose = () => {
     // 確認ダイアログを表示（ステップ5以外の場合）
     if (currentStep < 5) {
@@ -42,6 +50,8 @@ export function RegistrationForm({ open, onOpenChange }: RegistrationFormProps) 
       if (!confirmed) {
         return;
       }
+      // フォーム放棄イベントを送信
+      trackFormEvent("abandon", currentStep);
     }
     reset();
     onOpenChange(false);
@@ -130,6 +140,16 @@ export function RegistrationForm({ open, onOpenChange }: RegistrationFormProps) 
         // 送信成功時にタイムスタンプを記録
         recordSubmission();
 
+        // フォーム送信完了イベントを送信（UTMパラメータも含める）
+        const utmParams = getSavedUTMParams();
+        trackFormEvent("submit", 5, {
+          apply_for_agent: data.applyForAgent,
+          priority: data.priority,
+          qualifications_count: data.qualifications.length,
+          prefecture: data.prefecture,
+          ...utmParams,
+        });
+
         toast.success("登録が完了しました！");
 
         // Close modal and redirect to complete page
@@ -147,7 +167,10 @@ export function RegistrationForm({ open, onOpenChange }: RegistrationFormProps) 
         setIsSubmitting(false);
       }
     } else {
+      // 次のステップへ進む
       nextStep();
+      // ステップ完了イベントを送信
+      trackFormEvent("step_complete", currentStep);
     }
   };
 

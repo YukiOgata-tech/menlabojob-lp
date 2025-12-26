@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { trackFAQInteraction } from "@/lib/utils/gtm";
 
 const faqs = [
   {
@@ -33,6 +34,16 @@ const faqs = [
 ];
 
 export function FAQSection() {
+  const handleAccordionChange = (value: string) => {
+    if (value) {
+      const index = parseInt(value.replace("item-", ""));
+      const faq = faqs[index];
+      if (faq) {
+        trackFAQInteraction(faq.question, "open");
+      }
+    }
+  };
+
   return (
     <section id="faq" className="py-20 lg:py-32">
       <Container size="md">
@@ -59,7 +70,12 @@ export function FAQSection() {
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.8 }}
         >
-          <Accordion type="single" collapsible className="w-full space-y-4">
+          <Accordion
+            type="single"
+            collapsible
+            className="w-full space-y-4"
+            onValueChange={handleAccordionChange}
+          >
             {faqs.map((faq, index) => (
               <AccordionItem
                 key={index}

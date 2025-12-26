@@ -4,12 +4,17 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { Container } from "@/components/common/Container";
 import { Button } from "@/components/ui/button";
+import { trackButtonClick } from "@/lib/utils/gtm";
 
 interface VisionMatchSectionProps {
   onRegisterClick: () => void;
 }
 
 export function VisionMatchSection({ onRegisterClick }: VisionMatchSectionProps) {
+  const handleRegisterClick = () => {
+    trackButtonClick("registration_cta", "vision_match_section");
+    onRegisterClick();
+  };
 
   return (
     <section className="py-20 lg:py-30">
@@ -91,7 +96,7 @@ export function VisionMatchSection({ onRegisterClick }: VisionMatchSectionProps)
             transition={{ delay: 0.5, duration: 0.8 }}
           >
             <Button
-              onClick={onRegisterClick}
+              onClick={handleRegisterClick}
               size="lg"
               className="h-14 gap-2 rounded-full bg-red-400 px-8 text-base shadow-lg transition-all hover:bg-white hover:text-red-400 hover:shadow-xl"
             >

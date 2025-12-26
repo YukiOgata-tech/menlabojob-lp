@@ -4,12 +4,17 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { Container } from "@/components/common/Container";
 import { Button } from "@/components/ui/button";
+import { trackButtonClick } from "@/lib/utils/gtm";
 
 interface HeroSectionProps {
   onRegisterClick: () => void;
 }
 
 export function HeroSection({ onRegisterClick }: HeroSectionProps) {
+  const handleRegisterClick = () => {
+    trackButtonClick("registration_cta", "hero_section");
+    onRegisterClick();
+  };
 
   return (
     <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-primary/5 via-accent/5 to-secondary/5 pt-20">
@@ -47,7 +52,7 @@ export function HeroSection({ onRegisterClick }: HeroSectionProps) {
             className="text-center shadow-2xl"
           >
             <Button
-              onClick={onRegisterClick}
+              onClick={handleRegisterClick}
               size="lg"
               className="h-14 w-full gap-2 rounded-full bg-red-400 py-4 px-4 text-base shadow-lg hover:bg-red-500"
             >
@@ -91,7 +96,7 @@ export function HeroSection({ onRegisterClick }: HeroSectionProps) {
             className="text-center"
           >
             <Button
-              onClick={onRegisterClick}
+              onClick={handleRegisterClick}
               size="lg"
               className="h-14 w-2/5 gap-2 rounded-full bg-red-400 py-4 px-2 text-lg shadow-lg hover:bg-red-500"
             >
