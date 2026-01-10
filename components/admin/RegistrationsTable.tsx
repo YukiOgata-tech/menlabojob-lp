@@ -48,7 +48,8 @@ const priorityLabels: Record<string, string> = {
 };
 
 // 優先条件を日本語に変換
-const getPriorityLabel = (value: string): string => {
+const getPriorityLabel = (value: string | undefined): string => {
+  if (!value) return "-";
   return priorityLabels[value] || value;
 };
 
@@ -99,15 +100,17 @@ export function RegistrationsTable({ registrations, onUpdateRegistration }: Regi
 
       // 年齢フィルター
       let matchesAge = true;
-      const age = reg.age;
+      const ageNum = reg.age ? parseInt(reg.age, 10) : null;
       const minAgeNum = minAge ? parseInt(minAge, 10) : null;
       const maxAgeNum = maxAge ? parseInt(maxAge, 10) : null;
 
-      if (minAgeNum !== null && age < minAgeNum) {
-        matchesAge = false;
-      }
-      if (maxAgeNum !== null && age > maxAgeNum) {
-        matchesAge = false;
+      if (ageNum !== null) {
+        if (minAgeNum !== null && ageNum < minAgeNum) {
+          matchesAge = false;
+        }
+        if (maxAgeNum !== null && ageNum > maxAgeNum) {
+          matchesAge = false;
+        }
       }
 
       // 資格フィルター
@@ -121,6 +124,11 @@ export function RegistrationsTable({ registrations, onUpdateRegistration }: Regi
     filtered.sort((a, b) => {
       const aValue = a[sortField];
       const bValue = b[sortField];
+
+      // undefined 値を最後に配置
+      if (aValue === undefined && bValue === undefined) return 0;
+      if (aValue === undefined) return 1;
+      if (bValue === undefined) return -1;
 
       if (aValue < bValue) return sortOrder === "asc" ? -1 : 1;
       if (aValue > bValue) return sortOrder === "asc" ? 1 : -1;
