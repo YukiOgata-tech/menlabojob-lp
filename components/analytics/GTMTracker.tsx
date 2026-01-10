@@ -1,16 +1,16 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { saveUTMParams, trackTrafficSource, trackPageView } from "@/lib/utils/gtm";
 
 /**
- * GTMトラッキングコンポーネント
+ * GTMトラッキングコンポーネント（内部）
  * - UTMパラメータの自動キャプチャ
  * - ページビューの追跡
  * - 流入元情報の送信
  */
-export default function GTMTracker() {
+function GTMTrackerInner() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -28,4 +28,15 @@ export default function GTMTracker() {
   }, [pathname, searchParams]);
 
   return null; // UIは表示しない
+}
+
+/**
+ * GTMトラッキングコンポーネント（Suspense境界付き）
+ */
+export default function GTMTracker() {
+  return (
+    <Suspense fallback={null}>
+      <GTMTrackerInner />
+    </Suspense>
+  );
 }
