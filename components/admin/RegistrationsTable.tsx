@@ -88,10 +88,10 @@ export function RegistrationsTable({ registrations, onUpdateRegistration }: Regi
       const searchLower = searchTerm.toLowerCase();
       const matchesSearch =
         !searchTerm ||
-        reg.fullName.toLowerCase().includes(searchLower) ||
-        reg.email.toLowerCase().includes(searchLower) ||
-        reg.phoneNumber.includes(searchTerm) ||
-        reg.prefecture.includes(searchTerm);
+        reg.fullName?.toLowerCase().includes(searchLower) ||
+        reg.email?.toLowerCase().includes(searchLower) ||
+        reg.phoneNumber?.includes(searchTerm) ||
+        reg.prefecture?.includes(searchTerm);
 
       // ステータスフィルター
       const matchesStatus =
@@ -235,13 +235,13 @@ export function RegistrationsTable({ registrations, onUpdateRegistration }: Regi
 
     const csvData = filteredAndSortedData.map((reg) => [
       format(reg.createdAt, "yyyy/MM/dd HH:mm:ss", { locale: ja }),
-      reg.fullName,
-      reg.age,
-      reg.prefecture,
-      reg.phoneNumber,
-      reg.email,
+      reg.fullName || "",
+      reg.age || "",
+      reg.prefecture || "",
+      reg.phoneNumber || "",
+      reg.email || "",
       getPriorityLabel(reg.priority),
-      reg.qualifications.join("、"),
+      reg.qualifications?.join("、") || "",
       reg.applyForAgent ? "希望する" : "希望しない",
       reg.status === "pending" ? "未対応" : reg.status === "approved" ? "承認済み" : "却下",
     ]);
@@ -494,19 +494,19 @@ export function RegistrationsTable({ registrations, onUpdateRegistration }: Regi
                     <TableCell className="whitespace-nowrap">
                       {format(reg.createdAt, "yyyy/MM/dd HH:mm", { locale: ja })}
                     </TableCell>
-                    <TableCell className="font-medium">{reg.fullName}</TableCell>
-                    <TableCell>{reg.age}</TableCell>
-                    <TableCell>{reg.prefecture}</TableCell>
+                    <TableCell className="font-medium">{reg.fullName || "-"}</TableCell>
+                    <TableCell>{reg.age || "-"}</TableCell>
+                    <TableCell>{reg.prefecture || "-"}</TableCell>
                     <TableCell>
-                      <MaskedText value={reg.phoneNumber} type="phone" forceVisible={showAllPersonalInfo} />
+                      <MaskedText value={reg.phoneNumber || ""} type="phone" forceVisible={showAllPersonalInfo} />
                     </TableCell>
                     <TableCell>
-                      <MaskedText value={reg.email} type="email" forceVisible={showAllPersonalInfo} />
+                      <MaskedText value={reg.email || ""} type="email" forceVisible={showAllPersonalInfo} />
                     </TableCell>
                     <TableCell>{getPriorityLabel(reg.priority)}</TableCell>
                     <TableCell className="max-w-[200px]">
-                      <div className="truncate" title={reg.qualifications.join("、")}>
-                        {reg.qualifications.join("、")}
+                      <div className="truncate" title={reg.qualifications?.join("、") || ""}>
+                        {reg.qualifications?.join("、") || "-"}
                       </div>
                     </TableCell>
                     <TableCell>
@@ -579,7 +579,7 @@ export function RegistrationsTable({ registrations, onUpdateRegistration }: Regi
                   <p className="text-xs text-muted-foreground">
                     {format(reg.createdAt, "yyyy/MM/dd HH:mm", { locale: ja })}
                   </p>
-                  <p className="mt-1 font-bold text-foreground">{reg.fullName}</p>
+                  <p className="mt-1 font-bold text-foreground">{reg.fullName || "-"}</p>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <Select
@@ -626,22 +626,22 @@ export function RegistrationsTable({ registrations, onUpdateRegistration }: Regi
                 <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="text-xs text-muted-foreground">年齢</p>
-                    <p className="font-medium">{reg.age}</p>
+                    <p className="font-medium">{reg.age || "-"}</p>
                   </div>
                   <div>
                     <p className="text-xs text-muted-foreground">都道府県</p>
-                    <p className="font-medium">{reg.prefecture}</p>
+                    <p className="font-medium">{reg.prefecture || "-"}</p>
                   </div>
                 </div>
 
                 <div>
                   <p className="text-xs text-muted-foreground">電話番号</p>
-                  <MaskedText value={reg.phoneNumber} type="phone" forceVisible={showAllPersonalInfo} />
+                  <MaskedText value={reg.phoneNumber || ""} type="phone" forceVisible={showAllPersonalInfo} />
                 </div>
 
                 <div>
                   <p className="text-xs text-muted-foreground">メールアドレス</p>
-                  <MaskedText value={reg.email} type="email" forceVisible={showAllPersonalInfo} />
+                  <MaskedText value={reg.email || ""} type="email" forceVisible={showAllPersonalInfo} />
                 </div>
 
                 <div>
@@ -652,7 +652,7 @@ export function RegistrationsTable({ registrations, onUpdateRegistration }: Regi
                 <div>
                   <p className="text-xs text-muted-foreground">資格</p>
                   <p className="font-medium">
-                    {reg.qualifications.length > 0 ? reg.qualifications.join("、") : "-"}
+                    {reg.qualifications && reg.qualifications.length > 0 ? reg.qualifications.join("、") : "-"}
                   </p>
                 </div>
 

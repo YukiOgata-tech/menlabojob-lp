@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nGTM実装、404ページ追加、プロジェクト文書整備\n\n- GTM \\(GTM-TZFJQMNR\\) 設置とイベントトラッキング実装\n- UTMパラメータ自動取得・保存機能\n- フォーム/ボタン/FAQ操作のトラッキング\n- 404エラーページ作成\n- CLAUDE.md作成（開発ガイド）\n- プロジェクト報告書作成\n- Facebook Pixelエラー回避処理追加\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
     ]
   }
 }
